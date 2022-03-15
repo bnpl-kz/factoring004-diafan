@@ -11,7 +11,7 @@ if (! defined('DIAFAN'))
     include $path.'/includes/404.php';
 }
 
-class Payment_bnpl_admin
+class Factoring004_admin
 {
     public $config;
 

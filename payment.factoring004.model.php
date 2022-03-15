@@ -14,7 +14,7 @@ if (! defined('DIAFAN'))
 
 require_once __DIR__.'/vendor/autoload.php';
 
-class Payment_bnpl_model extends Diafan {
+class Factoring004_model extends Diafan {
 
     public function get($params, $pay)
     {
