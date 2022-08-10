@@ -45,6 +45,7 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         'B' => 
         array (
             'BnplPartners\\Factoring004\\' => 26,
+            'BnplPartners\\Factoring004Diafan\\' => 32,
         ),
     );
 
@@ -97,11 +98,21 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         array (
             0 => __DIR__ . '/..' . '/bnpl-partners/factoring004/src',
         ),
+        'BnplPartners\\Factoring004Diafan\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
     public static $classMap = array (
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
+        'BnplPartners\\Factoring004Diafan\\Handler\\AbstractOrderStatusHandler' => __DIR__ . '/../..' . '/src/Handler/AbstractOrderStatusHandler.php',
+        'BnplPartners\\Factoring004Diafan\\Handler\\DeliveryHandler' => __DIR__ . '/../..' . '/src/Handler/DeliveryHandler.php',
+        'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => __DIR__ . '/../..' . '/src/Handler/OrderStatusHandlerInterface.php',
+        'BnplPartners\\Factoring004Diafan\\Helper\\SessionTrait' => __DIR__ . '/../..' . '/src/Helper/SessionTrait.php',
+        'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => __DIR__ . '/../..' . '/src/Otp/DeliveryOtpChecker.php',
+        'BnplPartners\\Factoring004Diafan\\Otp\\OtpCheckerInterface' => __DIR__ . '/../..' . '/src/Otp/OtpCheckerInterface.php',
         'BnplPartners\\Factoring004\\AbstractResource' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/AbstractResource.php',
         'BnplPartners\\Factoring004\\Api' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Api.php',
         'BnplPartners\\Factoring004\\ArrayInterface' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ArrayInterface.php',

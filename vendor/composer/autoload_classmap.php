@@ -8,6 +8,12 @@ $baseDir = dirname($vendorDir);
 return array(
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
     'AssertionError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
+    'BnplPartners\\Factoring004Diafan\\Handler\\AbstractOrderStatusHandler' => $baseDir . '/src/Handler/AbstractOrderStatusHandler.php',
+    'BnplPartners\\Factoring004Diafan\\Handler\\DeliveryHandler' => $baseDir . '/src/Handler/DeliveryHandler.php',
+    'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => $baseDir . '/src/Handler/OrderStatusHandlerInterface.php',
+    'BnplPartners\\Factoring004Diafan\\Helper\\SessionTrait' => $baseDir . '/src/Helper/SessionTrait.php',
+    'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => $baseDir . '/src/Otp/DeliveryOtpChecker.php',
+    'BnplPartners\\Factoring004Diafan\\Otp\\OtpCheckerInterface' => $baseDir . '/src/Otp/OtpCheckerInterface.php',
     'BnplPartners\\Factoring004\\AbstractResource' => $vendorDir . '/bnpl-partners/factoring004/src/AbstractResource.php',
     'BnplPartners\\Factoring004\\Api' => $vendorDir . '/bnpl-partners/factoring004/src/Api.php',
     'BnplPartners\\Factoring004\\ArrayInterface' => $vendorDir . '/bnpl-partners/factoring004/src/ArrayInterface.php',
