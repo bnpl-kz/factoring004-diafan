@@ -10,6 +10,7 @@ return array(
     'AssertionError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\AbstractOrderStatusHandler' => $baseDir . '/src/Handler/AbstractOrderStatusHandler.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\AbstractOrderStatusRefundHandler' => $baseDir . '/src/Handler/AbstractOrderStatusRefundHandler.php',
+    'BnplPartners\\Factoring004Diafan\\Handler\\CancelHandler' => $baseDir . '/src/Handler/CancelHandler.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\DeliveryHandler' => $baseDir . '/src/Handler/DeliveryHandler.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\FullRefundHandler' => $baseDir . '/src/Handler/FullRefundHandler.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => $baseDir . '/src/Handler/OrderStatusHandlerInterface.php',

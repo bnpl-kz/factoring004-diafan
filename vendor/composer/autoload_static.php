@@ -109,6 +109,7 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\AbstractOrderStatusHandler' => __DIR__ . '/../..' . '/src/Handler/AbstractOrderStatusHandler.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\AbstractOrderStatusRefundHandler' => __DIR__ . '/../..' . '/src/Handler/AbstractOrderStatusRefundHandler.php',
+        'BnplPartners\\Factoring004Diafan\\Handler\\CancelHandler' => __DIR__ . '/../..' . '/src/Handler/CancelHandler.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\DeliveryHandler' => __DIR__ . '/../..' . '/src/Handler/DeliveryHandler.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\FullRefundHandler' => __DIR__ . '/../..' . '/src/Handler/FullRefundHandler.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => __DIR__ . '/../..' . '/src/Handler/OrderStatusHandlerInterface.php',

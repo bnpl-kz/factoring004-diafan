@@ -2,6 +2,7 @@
 
 use BnplPartners\Factoring004\Exception\ErrorResponseException;
 use BnplPartners\Factoring004\Exception\PackageException;
+use BnplPartners\Factoring004Diafan\Handler\CancelHandler;
 use BnplPartners\Factoring004Diafan\Handler\DeliveryHandler;
 use BnplPartners\Factoring004Diafan\Handler\FullRefundHandler;
 use BnplPartners\Factoring004Diafan\Handler\PartialRefundHandler;
@@ -268,11 +269,15 @@ class Order_factoring004_admin_order extends Diafan
             return new DeliveryHandler();
         }
 
-        if ($newOrderStatus === '3' && $currentOrderStatus === '4') {
+        if ($newOrderStatus !== '3') {
+            throw new InvalidArgumentException('Order status handler not found');
+        }
+
+        if ($currentOrderStatus === '4') {
             return new FullRefundHandler();
         }
 
-        throw new InvalidArgumentException('Order status handler not found');
+        return new CancelHandler();
     }
 
     /**
