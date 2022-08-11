@@ -1018,6 +1018,60 @@
                 }
             ],
             "install-path": "../symfony/polyfill-php72"
+        },
+        {
+            "name": "wa72/simplelogger",
+            "version": "v1.1.0",
+            "version_normalized": "1.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wasinger/simplelogger.git",
+                "reference": "2905e6ee287a2b3a789c7e7b8c5fae2fff63d951"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wasinger/simplelogger/zipball/2905e6ee287a2b3a789c7e7b8c5fae2fff63d951",
+                "reference": "2905e6ee287a2b3a789c7e7b8c5fae2fff63d951",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "psr/log": "^1.0.0"
+            },
+            "provide": {
+                "psr/log-implementation": "1.0.0"
+            },
+            "time": "2018-03-07T17:10:45+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Wa72\\SimpleLogger": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Singer",
+                    "email": "singer@webagentur72.de",
+                    "homepage": "http://www.webagentur72.de"
+                }
+            ],
+            "description": "Wa72SimpleLogger is a collection of very simple loggers implementing \\Psr\\Log\\LoggerInterface (PSR-3)",
+            "homepage": "http://github.com/wasinger/simplelogger",
+            "keywords": [
+                "log",
+                "logger",
+                "psr-3"
+            ],
+            "support": {
+                "issues": "https://github.com/wasinger/simplelogger/issues",
+                "source": "https://github.com/wasinger/simplelogger/tree/master"
+            },
+            "install-path": "../wa72/simplelogger"
         }
     ],
     "dev": false,

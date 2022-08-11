@@ -97,6 +97,12 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'psr/log-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0.0',
+            ),
+        ),
         'psr/simple-cache' => array(
             'pretty_version' => '1.0.1',
             'version' => '1.0.1.0',
@@ -148,6 +154,15 @@
             'reference' => 'beecef6b463b06954638f02378f52496cb84bacc',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-php72',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wa72/simplelogger' => array(
+            'pretty_version' => 'v1.1.0',
+            'version' => '1.1.0.0',
+            'reference' => '2905e6ee287a2b3a789c7e7b8c5fae2fff63d951',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../wa72/simplelogger',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

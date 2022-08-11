@@ -104,6 +104,16 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'W' => 
+        array (
+            'Wa72\\SimpleLogger' => 
+            array (
+                0 => __DIR__ . '/..' . '/wa72/simplelogger',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
@@ -114,6 +124,7 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         'BnplPartners\\Factoring004Diafan\\Handler\\FullRefundHandler' => __DIR__ . '/../..' . '/src/Handler/FullRefundHandler.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => __DIR__ . '/../..' . '/src/Handler/OrderStatusHandlerInterface.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\PartialRefundHandler' => __DIR__ . '/../..' . '/src/Handler/PartialRefundHandler.php',
+        'BnplPartners\\Factoring004Diafan\\Helper\\ApiCreationTrait' => __DIR__ . '/../..' . '/src/Helper/ApiCreationTrait.php',
         'BnplPartners\\Factoring004Diafan\\Helper\\Config' => __DIR__ . '/../..' . '/src/Helper/Config.php',
         'BnplPartners\\Factoring004Diafan\\Helper\\SessionTrait' => __DIR__ . '/../..' . '/src/Helper/SessionTrait.php',
         'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => __DIR__ . '/../..' . '/src/Otp/DeliveryOtpChecker.php',
@@ -296,6 +307,11 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         'Symfony\\Polyfill\\Php70\\Php70' => __DIR__ . '/..' . '/symfony/polyfill-php70/Php70.php',
         'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+        'Wa72\\SimpleLogger\\AbstractSimpleLogger' => __DIR__ . '/..' . '/wa72/simplelogger/Wa72/SimpleLogger/AbstractSimpleLogger.php',
+        'Wa72\\SimpleLogger\\ArrayLogger' => __DIR__ . '/..' . '/wa72/simplelogger/Wa72/SimpleLogger/ArrayLogger.php',
+        'Wa72\\SimpleLogger\\ConsoleLogger' => __DIR__ . '/..' . '/wa72/simplelogger/Wa72/SimpleLogger/ConsoleLogger.php',
+        'Wa72\\SimpleLogger\\EchoLogger' => __DIR__ . '/..' . '/wa72/simplelogger/Wa72/SimpleLogger/EchoLogger.php',
+        'Wa72\\SimpleLogger\\FileLogger' => __DIR__ . '/..' . '/wa72/simplelogger/Wa72/SimpleLogger/FileLogger.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -303,6 +319,7 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$classMap;
 
         }, null, ClassLoader::class);

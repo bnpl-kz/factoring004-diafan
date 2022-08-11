@@ -6,4 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Wa72\\SimpleLogger' => array($vendorDir . '/wa72/simplelogger'),
 );

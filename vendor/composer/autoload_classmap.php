@@ -15,6 +15,7 @@ return array(
     'BnplPartners\\Factoring004Diafan\\Handler\\FullRefundHandler' => $baseDir . '/src/Handler/FullRefundHandler.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => $baseDir . '/src/Handler/OrderStatusHandlerInterface.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\PartialRefundHandler' => $baseDir . '/src/Handler/PartialRefundHandler.php',
+    'BnplPartners\\Factoring004Diafan\\Helper\\ApiCreationTrait' => $baseDir . '/src/Helper/ApiCreationTrait.php',
     'BnplPartners\\Factoring004Diafan\\Helper\\Config' => $baseDir . '/src/Helper/Config.php',
     'BnplPartners\\Factoring004Diafan\\Helper\\SessionTrait' => $baseDir . '/src/Helper/SessionTrait.php',
     'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => $baseDir . '/src/Otp/DeliveryOtpChecker.php',
@@ -197,4 +198,9 @@ return array(
     'Symfony\\Polyfill\\Php70\\Php70' => $vendorDir . '/symfony/polyfill-php70/Php70.php',
     'Symfony\\Polyfill\\Php72\\Php72' => $vendorDir . '/symfony/polyfill-php72/Php72.php',
     'TypeError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+    'Wa72\\SimpleLogger\\AbstractSimpleLogger' => $vendorDir . '/wa72/simplelogger/Wa72/SimpleLogger/AbstractSimpleLogger.php',
+    'Wa72\\SimpleLogger\\ArrayLogger' => $vendorDir . '/wa72/simplelogger/Wa72/SimpleLogger/ArrayLogger.php',
+    'Wa72\\SimpleLogger\\ConsoleLogger' => $vendorDir . '/wa72/simplelogger/Wa72/SimpleLogger/ConsoleLogger.php',
+    'Wa72\\SimpleLogger\\EchoLogger' => $vendorDir . '/wa72/simplelogger/Wa72/SimpleLogger/EchoLogger.php',
+    'Wa72\\SimpleLogger\\FileLogger' => $vendorDir . '/wa72/simplelogger/Wa72/SimpleLogger/FileLogger.php',
 );
