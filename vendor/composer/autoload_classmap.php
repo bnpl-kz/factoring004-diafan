@@ -15,6 +15,7 @@ return array(
     'BnplPartners\\Factoring004Diafan\\Handler\\FullRefundHandler' => $baseDir . '/src/Handler/FullRefundHandler.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => $baseDir . '/src/Handler/OrderStatusHandlerInterface.php',
     'BnplPartners\\Factoring004Diafan\\Handler\\PartialRefundHandler' => $baseDir . '/src/Handler/PartialRefundHandler.php',
+    'BnplPartners\\Factoring004Diafan\\Helper\\Config' => $baseDir . '/src/Helper/Config.php',
     'BnplPartners\\Factoring004Diafan\\Helper\\SessionTrait' => $baseDir . '/src/Helper/SessionTrait.php',
     'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => $baseDir . '/src/Otp/DeliveryOtpChecker.php',
     'BnplPartners\\Factoring004Diafan\\Otp\\OtpCheckerInterface' => $baseDir . '/src/Otp/OtpCheckerInterface.php',

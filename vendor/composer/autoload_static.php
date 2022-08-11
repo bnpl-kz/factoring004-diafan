@@ -114,6 +114,7 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         'BnplPartners\\Factoring004Diafan\\Handler\\FullRefundHandler' => __DIR__ . '/../..' . '/src/Handler/FullRefundHandler.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\OrderStatusHandlerInterface' => __DIR__ . '/../..' . '/src/Handler/OrderStatusHandlerInterface.php',
         'BnplPartners\\Factoring004Diafan\\Handler\\PartialRefundHandler' => __DIR__ . '/../..' . '/src/Handler/PartialRefundHandler.php',
+        'BnplPartners\\Factoring004Diafan\\Helper\\Config' => __DIR__ . '/../..' . '/src/Helper/Config.php',
         'BnplPartners\\Factoring004Diafan\\Helper\\SessionTrait' => __DIR__ . '/../..' . '/src/Helper/SessionTrait.php',
         'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => __DIR__ . '/../..' . '/src/Otp/DeliveryOtpChecker.php',
         'BnplPartners\\Factoring004Diafan\\Otp\\OtpCheckerInterface' => __DIR__ . '/../..' . '/src/Otp/OtpCheckerInterface.php',
