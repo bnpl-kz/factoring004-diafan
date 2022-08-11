@@ -35,18 +35,18 @@ class Factoring004
             'billNumber' => $data["id"],
             'billAmount' => (int) round($data['summ']),
             'itemsQuantity' => $this->getItemsQuantityCount($data['details']['goods']),
-            'successRedirect' => 'http://'.$_SERVER['HTTP_HOST'],
-            'failRedirect' => '/',
-            'postLink' => 'http://'.$_SERVER['HTTP_HOST'].'/payment/get/factoring004',
+            'successRedirect' => 'http'.(IS_HTTPS ? "s" : '').'://'.$_SERVER['HTTP_HOST'],
+            'failRedirect' => 'http'.(IS_HTTPS ? "s" : '').'://'.$_SERVER['HTTP_HOST'],
+            'postLink' => 'http'.(IS_HTTPS ? "s" : '').'://'.$_SERVER['HTTP_HOST'].'/payment/get/factoring004/post-link',
             'items' => $this->getItems($data['details']['goods']),
             'deliveryPoint'=> [
-                'city'=>isset($data['details']['city']) ? $data['details']['city'] : '',
-                'street'=>isset($data['details']['street']) ? $data['details']['street'] : '',
-                'house'=>isset($data['details']['building']) ? $data['details']['building'] : '',
-                'flat'=>isset($data['details']['flat']) ? $data['details']['flat'] : ''
+                'city'=> isset($data['details']['city']) ? $data['details']['city'] : '',
+                'street'=> isset($data['details']['street']) ? $data['details']['street'] : '',
+                'house'=> isset($data['details']['building']) ? $data['details']['building'] : '',
+                'flat'=> isset($data['details']['flat']) ? $data['details']['flat'] : ''
             ]
         ]);
-        return $this->api->preApps->preApp($message);
+        return $this->api->preApps->preApp($message)->getRedirectLink();
     }
 
     private function getItemsQuantityCount(array $data)
