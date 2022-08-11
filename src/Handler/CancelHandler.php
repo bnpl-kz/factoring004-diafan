@@ -2,8 +2,6 @@
 
 namespace BnplPartners\Factoring004Diafan\Handler;
 
-use BnplPartners\Factoring004\Api;
-use BnplPartners\Factoring004\Auth\BearerTokenAuth;
 use BnplPartners\Factoring004\ChangeStatus\CancelOrder;
 use BnplPartners\Factoring004\ChangeStatus\CancelStatus;
 use BnplPartners\Factoring004\ChangeStatus\MerchantsOrders;
@@ -11,9 +9,13 @@ use BnplPartners\Factoring004\Exception\ErrorResponseException;
 use BnplPartners\Factoring004\Response\ErrorResponse;
 use BnplPartners\Factoring004\Transport\GuzzleTransport;
 use BnplPartners\Factoring004\Transport\TransportInterface;
+use BnplPartners\Factoring004Diafan\Helper\ApiCreationTrait;
+use BnplPartners\Factoring004Diafan\Helper\Config;
 
 class CancelHandler implements OrderStatusHandlerInterface
 {
+    use ApiCreationTrait;
+
     /**
      * @var \BnplPartners\Factoring004\Transport\TransportInterface
      */
@@ -37,7 +39,7 @@ class CancelHandler implements OrderStatusHandlerInterface
      */
     public function shouldProcess($orderStatusId)
     {
-        return (string) $orderStatusId === '3';
+        return (string) $orderStatusId === Config::get('factoring004_status_cancel');
     }
 
     /**
@@ -64,25 +66,5 @@ class CancelHandler implements OrderStatusHandlerInterface
         }
 
         return false;
-    }
-
-    /**
-     * @return \BnplPartners\Factoring004\Api
-     */
-    protected function createApi()
-    {
-        return Api::create(
-            'http://localhost',
-            new BearerTokenAuth(''),
-            $this->transport
-        );
-    }
-
-    /**
-     * @return string
-     */
-    protected function getMerchantId()
-    {
-        return '';
     }
 }

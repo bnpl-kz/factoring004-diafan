@@ -2,16 +2,18 @@
 
 namespace BnplPartners\Factoring004Diafan\Handler;
 
-use BnplPartners\Factoring004\Api;
-use BnplPartners\Factoring004\Auth\BearerTokenAuth;
 use BnplPartners\Factoring004\ChangeStatus\MerchantsOrders;
 use BnplPartners\Factoring004\Exception\ErrorResponseException;
 use BnplPartners\Factoring004\Response\ErrorResponse;
 use BnplPartners\Factoring004\Transport\GuzzleTransport;
 use BnplPartners\Factoring004\Transport\TransportInterface;
+use BnplPartners\Factoring004Diafan\Helper\ApiCreationTrait;
+use BnplPartners\Factoring004Diafan\Helper\Config;
 
 abstract class AbstractOrderStatusHandler implements OrderStatusHandlerInterface
 {
+    use ApiCreationTrait;
+
     /**
      * @var \BnplPartners\Factoring004\Transport\TransportInterface
      */
@@ -83,32 +85,10 @@ abstract class AbstractOrderStatusHandler implements OrderStatusHandlerInterface
     }
 
     /**
-     * @return \BnplPartners\Factoring004\Api
-     */
-    protected function createApi()
-    {
-        return Api::create(
-            'http://localhost',
-            new BearerTokenAuth(''),
-            $this->transport
-        );
-    }
-
-    /**
-     * @return string
-     */
-    protected function getMerchantId()
-    {
-        return '';
-    }
-
-    /**
      * @return string[]
      */
     protected function getConfirmableDeliveryMethods()
     {
-        $ids = '';
-
-        return $ids ? array_map('trim', explode(',', $ids)) : [];
+        return Config::get('factoring004_delivery_items', []);
     }
 }

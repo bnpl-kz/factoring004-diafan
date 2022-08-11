@@ -5,6 +5,7 @@ namespace BnplPartners\Factoring004Diafan\Handler;
 use BnplPartners\Factoring004\ChangeStatus\DeliveryOrder;
 use BnplPartners\Factoring004\ChangeStatus\DeliveryStatus;
 use BnplPartners\Factoring004\Otp\SendOtp;
+use BnplPartners\Factoring004Diafan\Helper\Config;
 
 class DeliveryHandler extends AbstractOrderStatusHandler
 {
@@ -33,7 +34,7 @@ class DeliveryHandler extends AbstractOrderStatusHandler
      */
     public function shouldProcess($orderStatusId)
     {
-        return $orderStatusId === '4';
+        return $orderStatusId === Config::get('factoring004_status_delivery');
     }
 
     /**

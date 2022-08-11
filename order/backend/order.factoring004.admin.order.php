@@ -6,6 +6,7 @@ use BnplPartners\Factoring004Diafan\Handler\CancelHandler;
 use BnplPartners\Factoring004Diafan\Handler\DeliveryHandler;
 use BnplPartners\Factoring004Diafan\Handler\FullRefundHandler;
 use BnplPartners\Factoring004Diafan\Handler\PartialRefundHandler;
+use BnplPartners\Factoring004Diafan\Helper\Config as PaymentConfig;
 use BnplPartners\Factoring004Diafan\Helper\SessionTrait;
 use BnplPartners\Factoring004Diafan\Otp\DeliveryOtpChecker;
 use BnplPartners\Factoring004Diafan\Otp\RefundOtpChecker;
@@ -265,15 +266,15 @@ class Order_factoring004_admin_order extends Diafan
      */
     private function resolveOrderStatusHandler($currentOrderStatus, $newOrderStatus)
     {
-        if ($newOrderStatus === '4') {
+        if ($newOrderStatus === PaymentConfig::get('factoring004_status_delivery')) {
             return new DeliveryHandler();
         }
 
-        if ($newOrderStatus !== '3') {
+        if ($newOrderStatus !== PaymentConfig::get('factoring004_status_cancel')) {
             throw new InvalidArgumentException('Order status handler not found');
         }
 
-        if ($currentOrderStatus === '4') {
+        if ($currentOrderStatus === PaymentConfig::get('factoring004_status_delivery')) {
             return new FullRefundHandler();
         }
 
@@ -287,7 +288,7 @@ class Order_factoring004_admin_order extends Diafan
      */
     private function resolveOtpChecker($statusId)
     {
-        if ($statusId === '4') {
+        if ($statusId === PaymentConfig::get('factoring004_status_delivery')) {
             return new DeliveryOtpChecker();
         }
 

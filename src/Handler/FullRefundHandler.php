@@ -3,6 +3,7 @@
 namespace BnplPartners\Factoring004Diafan\Handler;
 
 use BnplPartners\Factoring004\ChangeStatus\ReturnStatus;
+use BnplPartners\Factoring004Diafan\Helper\Config;
 
 class FullRefundHandler extends AbstractOrderStatusRefundHandler
 {
@@ -21,7 +22,7 @@ class FullRefundHandler extends AbstractOrderStatusRefundHandler
      */
     public function shouldProcess($orderStatusId)
     {
-        return $orderStatusId === '3';
+        return $orderStatusId === Config::get('factoring004_status_return');
     }
 
     /**
