@@ -117,6 +117,14 @@ class Order_factoring004_admin_order extends Diafan
     }
 
     /**
+     * @return void
+     */
+    public function list()
+    {
+        include_once __DIR__ . '/views/disable_group_status_update.php';
+    }
+
+    /**
      * @param int|string $orderId
      *
      * @return array<string, mixed>
