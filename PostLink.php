@@ -16,6 +16,7 @@ require_once 'vendor/autoload.php';
 
 use BnplPartners\Factoring004\Signature\PostLinkSignatureValidator;
 use BnplPartners\Factoring004Diafan\Helper\Config as Factoring004Config;
+use BnplPartners\Factoring004Diafan\Helper\LoggerFactory;
 
 class PostLink
 {
@@ -35,7 +36,9 @@ class PostLink
             return;
         }
 
-        $request = json_decode(file_get_contents('php://input'), true);
+        $request = json_decode($input = file_get_contents('php://input'), true);
+
+        LoggerFactory::create()->createLogger()->debug($input);
 
         try {
             $this->validateRequest($request);

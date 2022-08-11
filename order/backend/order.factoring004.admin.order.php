@@ -2,11 +2,13 @@
 
 use BnplPartners\Factoring004\Exception\ErrorResponseException;
 use BnplPartners\Factoring004\Exception\PackageException;
+use BnplPartners\Factoring004\Transport\GuzzleTransport;
 use BnplPartners\Factoring004Diafan\Handler\CancelHandler;
 use BnplPartners\Factoring004Diafan\Handler\DeliveryHandler;
 use BnplPartners\Factoring004Diafan\Handler\FullRefundHandler;
 use BnplPartners\Factoring004Diafan\Handler\PartialRefundHandler;
 use BnplPartners\Factoring004Diafan\Helper\Config as PaymentConfig;
+use BnplPartners\Factoring004Diafan\Helper\LoggerFactory;
 use BnplPartners\Factoring004Diafan\Helper\SessionTrait;
 use BnplPartners\Factoring004Diafan\Otp\DeliveryOtpChecker;
 use BnplPartners\Factoring004Diafan\Otp\RefundOtpChecker;
@@ -102,10 +104,16 @@ class Order_factoring004_admin_order extends Diafan
         } catch (ErrorResponseException $e) {
             $response = $e->getErrorResponse();
 
+            LoggerFactory::create()
+                ->createLogger()
+                ->notice($response->getError() . ': ' . $response->getMessage(), $response->toArray());
+
             $this->putSession('error_' . $this->diafan->id, $response->getError() . ': ' . $response->getMessage());
             $this->diafan->redirect($this->getBackUrl());
             exit;
         } catch (PackageException $e) {
+            LoggerFactory::create()->createLogger()->error($e);
+
             $this->putSession(
                 'error_' . $this->diafan->id,
                 (MOD_DEVELOPER || MOD_DEVELOPER_ADMIN) ? $e->getMessage() : 'An error occurred'
@@ -274,24 +282,27 @@ class Order_factoring004_admin_order extends Diafan
      */
     private function resolveOrderStatusHandler($currentOrderStatus, $newOrderStatus)
     {
+        $transport = new GuzzleTransport();
+        $transport->setLogger(LoggerFactory::create()->createLogger());
+
         if ($newOrderStatus === PaymentConfig::get('factoring004_status_delivery')) {
-            return new DeliveryHandler();
+            return new DeliveryHandler($transport);
         }
 
         if (PaymentConfig::get('factoring004_status_cancel') === PaymentConfig::get('factoring004_status_return')) {
             if ($currentOrderStatus === PaymentConfig::get('factoring004_status_delivery')) {
-                return new FullRefundHandler();
+                return new FullRefundHandler($transport);
             }
 
-            return new CancelHandler();
+            return new CancelHandler($transport);
         }
 
         if (PaymentConfig::get('factoring004_status_return')) {
-            return new FullRefundHandler();
+            return new FullRefundHandler($transport);
         }
 
         if (PaymentConfig::get('factoring004_status_cancel')) {
-            return new CancelHandler();
+            return new CancelHandler($transport);
         }
 
         throw new InvalidArgumentException('Order status handler not found');
@@ -304,11 +315,14 @@ class Order_factoring004_admin_order extends Diafan
      */
     private function resolveOtpChecker($statusId)
     {
+        $transport = new GuzzleTransport();
+        $transport->setLogger(LoggerFactory::create()->createLogger());
+
         if ($statusId === PaymentConfig::get('factoring004_status_delivery')) {
-            return new DeliveryOtpChecker();
+            return new DeliveryOtpChecker($transport);
         }
 
-        return new RefundOtpChecker();
+        return new RefundOtpChecker($transport);
     }
 
     /**
