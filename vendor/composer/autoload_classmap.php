@@ -17,6 +17,7 @@ return array(
     'BnplPartners\\Factoring004Diafan\\Handler\\PartialRefundHandler' => $baseDir . '/src/Handler/PartialRefundHandler.php',
     'BnplPartners\\Factoring004Diafan\\Helper\\ApiCreationTrait' => $baseDir . '/src/Helper/ApiCreationTrait.php',
     'BnplPartners\\Factoring004Diafan\\Helper\\Config' => $baseDir . '/src/Helper/Config.php',
+    'BnplPartners\\Factoring004Diafan\\Helper\\LoggerFactory' => $baseDir . '/src/Helper/LoggerFactory.php',
     'BnplPartners\\Factoring004Diafan\\Helper\\SessionTrait' => $baseDir . '/src/Helper/SessionTrait.php',
     'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => $baseDir . '/src/Otp/DeliveryOtpChecker.php',
     'BnplPartners\\Factoring004Diafan\\Otp\\OtpCheckerInterface' => $baseDir . '/src/Otp/OtpCheckerInterface.php',
