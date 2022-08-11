@@ -270,15 +270,23 @@ class Order_factoring004_admin_order extends Diafan
             return new DeliveryHandler();
         }
 
-        if ($newOrderStatus !== PaymentConfig::get('factoring004_status_cancel')) {
-            throw new InvalidArgumentException('Order status handler not found');
+        if (PaymentConfig::get('factoring004_status_cancel') === PaymentConfig::get('factoring004_status_return')) {
+            if ($currentOrderStatus === PaymentConfig::get('factoring004_status_delivery')) {
+                return new FullRefundHandler();
+            }
+
+            return new CancelHandler();
         }
 
-        if ($currentOrderStatus === PaymentConfig::get('factoring004_status_delivery')) {
+        if (PaymentConfig::get('factoring004_status_return')) {
             return new FullRefundHandler();
         }
 
-        return new CancelHandler();
+        if (PaymentConfig::get('factoring004_status_cancel')) {
+            return new CancelHandler();
+        }
+
+        throw new InvalidArgumentException('Order status handler not found');
     }
 
     /**
