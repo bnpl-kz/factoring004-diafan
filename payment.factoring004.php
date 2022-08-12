@@ -1,19 +1,23 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
+use BnplPartners\Factoring004Diafan\Handler\FileHandler;
+use BnplPartners\Factoring004Diafan\Handler\PostLinkHandler;
+
 $route = $_GET['rewrite'];
 
 if ($route === 'factoring004/file-handler/upload') {
-    require_once 'FileHandler.php';
     $fileHandler = new FileHandler();
     $fileHandler->upload($_FILES['file']);
+    return;
 } else if ($route === 'factoring004/file-handler/destroy') {
-    require_once 'FileHandler.php';
     $fileHandler = new FileHandler();
     $fileHandler->destroy($_POST['filename']);
 } else if ($route === 'factoring004/post-link') {
-    require_once 'PostLink.php';
-    $postLink = new PostLink();
+    $postLink = new PostLinkHandler();
     $postLink($this->diafan->_payment);
+    return;
 } else {
     Custom::inc('includes/404.php');
     return;

@@ -1,24 +1,15 @@
 <?php
 
-if ( ! defined('DIAFAN'))
-{
-    $path = __FILE__;
-    while(! file_exists($path.'/includes/404.php'))
-    {
-        $parent = dirname($path);
-        if($parent == $path) exit;
-        $path = $parent;
-    }
-    include $path.'/includes/404.php';
-}
-
-require_once 'vendor/autoload.php';
+namespace BnplPartners\Factoring004Diafan\Handler;
 
 use BnplPartners\Factoring004\Signature\PostLinkSignatureValidator;
 use BnplPartners\Factoring004Diafan\Helper\Config as Factoring004Config;
 use BnplPartners\Factoring004Diafan\Helper\LoggerFactory;
+use DB;
+use InvalidArgumentException;
+use Payment_inc;
 
-class PostLink
+class PostLinkHandler
 {
     const REQUEST_FIELDS = ['status', 'billNumber', 'preappId'];
     const STATUS_PREAPPROVED = 'preapproved';
@@ -42,7 +33,7 @@ class PostLink
 
         try {
             $this->validateRequest($request);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             header('HTTP/1.1 400 Bad Request');
             header('Content-Type: application/json');
             echo json_encode(['error' => $e->getMessage()]);
