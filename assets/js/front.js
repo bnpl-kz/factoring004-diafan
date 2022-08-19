@@ -1,4 +1,4 @@
-//start-factoring004
+
 $(document).ready(function () {
     const min_total = 6000;
     const max_total = 200000;
@@ -48,13 +48,16 @@ $(document).ready(function () {
         if (factoring004_payment_id === current_payment_id) {
             button_submit.after('<button id="factoring004-button" class="button-d" type="button">Продолжить</button>')
             button_submit.css('display','none')
-            if (!$('.agreement-file').length) {
-                $(`#payment${factoring004_payment_id}`).parent().next().append('<div style="padding-top: 5px;" class="field-d agreement-file"><input type="checkbox" id="factoring004-offer-agreement"><label for="factoring004-offer-agreement">Я ознакомлен и согласен с условиями <a target="_blank" href="">Рассрочка 0-0-4</a></label></div>');
+            $(`#payment${factoring004_payment_id}`).parent().next().append('<div id="factoring004-paymentschedule"></div>')
+            if (window.factoring004_offer_file) {
+                $(`#payment${factoring004_payment_id}`).parent().next().append('<div style="padding-top: 5px;" class="field-d agreement-file"><input type="checkbox" id="factoring004-offer-agreement"><label for="factoring004-offer-agreement">Я ознакомлен и согласен с условиями <a target="_blank" href="'+window.factoring004_offer_file+'">Рассрочка 0-0-4</a></label></div>');
             }
+            const plugin = new Factoring004.PaymentSchedule({ elemId:'factoring004-paymentschedule', totalAmount: total_sum });
+            plugin.render();
         } else {
             button_submit.css('display','block')
             $('#factoring004-button').remove()
         }
     }
+
 })
-//end-factoring004

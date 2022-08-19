@@ -5,6 +5,8 @@ if (!defined('DIAFAN'))
     include dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/includes/404.php';
 }
 
+require_once 'vendor/autoload.php';
+
 class Payment_factoring004_admin
 {
     public $config;
@@ -16,11 +18,10 @@ class Payment_factoring004_admin
         $this->diafan->_admin->js_view[] = 'modules/payment/backend/factoring004/assets/js/custom.js';
         $this->diafan->_admin->css_view[] = 'modules/payment/backend/factoring004/assets/css/style.css';
         $this->createTable();
-        $file_cart_js = file_get_contents('modules/cart/js/cart.table.js');
-        $file_factoring004_front_js = file_get_contents('modules/payment/backend/factoring004/assets/js/front.js');
+        $file_payment = file_get_contents('modules/payment/views/payment.view.list.php');
 
-        if (!strripos($file_cart_js, '//start-factoring004')) {
-            file_put_contents('modules/cart/js/cart.table.js',PHP_EOL . $file_factoring004_front_js,FILE_APPEND);
+        if (!strripos($file_payment, 'require_once "modules/payment/backend/factoring004/payment.factoring004.custom.php";')) {
+            file_put_contents('modules/payment/views/payment.view.list.php',PHP_EOL . 'require_once "modules/payment/backend/factoring004/payment.factoring004.custom.php";',FILE_APPEND);
         }
 
         $this->config = array(
