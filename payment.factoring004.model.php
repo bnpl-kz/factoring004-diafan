@@ -15,8 +15,9 @@ class Payment_factoring004_model extends Diafan
             $factoring004 = new Factoring004($params['factoring004_api_host'], $params['factoring004_oauth_token']);
             $response = $factoring004->createPreapp(array_merge($params, $pay));
             return $this->diafan->redirect($response);
-        } catch (\BnplPartners\Factoring004\Exception\ValidationException $e) {
-            return $e->getResponse()->toArray();
+        } catch (\Exception $e) {
+            Custom::inc('modules/payment/backend/factoring004/payment.factoring004.error.php');
+            return;
         }
     }
 }
