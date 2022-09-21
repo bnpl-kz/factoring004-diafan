@@ -31,7 +31,9 @@ class Factoring004
                 'partnerEmail' => $data['factoring004_partner_email'],
                 'partnerWebsite' => $data['factoring004_partner_website'],
             ],
-            'phoneNumber'=>$data['phone'],
+            'phoneNumber'=> empty($data['details']['phone'])
+                ? null
+                : preg_replace('/^8|\+7/', '7', $data['details']['phone']),
             'billNumber' => $data["id"],
             'billAmount' => (int) round($data['summ']),
             'itemsQuantity' => $this->getItemsQuantityCount($data['details']['goods']),
