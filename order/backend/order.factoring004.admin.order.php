@@ -330,7 +330,7 @@ class Order_factoring004_admin_order extends Diafan
      */
     private function getBackUrl()
     {
-        return 'http://localhost:8080/admin/order/edit' . $this->diafan->id . '/';
+        return $this->diafan->_route->current_admin_link() . 'edit' . $this->diafan->id;
     }
 
     /**
