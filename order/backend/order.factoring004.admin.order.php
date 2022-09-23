@@ -264,7 +264,7 @@ class Order_factoring004_admin_order extends Diafan
 
         $items = array_merge(array_values($products), array_values($additional));
         $amount = array_reduce($items, function ($prev, $curr) {
-            $count = isset($curr['count']) ? $curr['count'] : 1;
+            $count = isset($curr['count']) ? $curr['count'] : 0;
 
             return $prev + $count * $curr['price'];
         }, 0);
