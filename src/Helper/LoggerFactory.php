@@ -29,7 +29,7 @@ class LoggerFactory
     public function __construct()
     {
         $this->path = ABSOLUTE_PATH . dirname(Dev::LOG_ERRORS_PATH) . '/';
-        $this->logFile = $this->path . date('factoring004-Y-m-d') . static::LOG_EXTENSION;
+        $this->logFile = $this->path . 'factoring004-' . date('Y-m-d') . static::LOG_EXTENSION;
     }
 
     /**
