@@ -33,20 +33,17 @@ class OAuthTokenManager implements OAuthTokenManagerInterface
     private $consumerSecret;
 
     /**
-     * @param \BnplPartners\Factoring004\Transport\TransportInterface|null $transport
      * @param string $baseUri
      * @param string $consumerKey
      * @param string $consumerSecret
+     * @param \BnplPartners\Factoring004\Transport\TransportInterface|null $transport
      */
     public function __construct(
         $baseUri,
         $consumerKey,
         $consumerSecret,
-        $transport = null
+        TransportInterface $transport = null
     ) {
-        $baseUri = (string) $baseUri;
-        $consumerKey = (string) $consumerKey;
-        $consumerSecret = (string) $consumerSecret;
         if (!$baseUri) {
             throw new InvalidArgumentException('Base URI cannot be empty');
         }

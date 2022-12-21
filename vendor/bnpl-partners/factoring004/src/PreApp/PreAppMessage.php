@@ -75,11 +75,6 @@ class PreAppMessage implements ArrayInterface
         $postLink,
         array $items
     ) {
-        $billNumber = (string) $billNumber;
-        $billAmount = (int) $billAmount;
-        $itemsQuantity = (int) $itemsQuantity;
-        $successRedirect = (string) $successRedirect;
-        $postLink = (string) $postLink;
         if ($billAmount <= 0) {
             throw new InvalidArgumentException('billAmount must be greater than 0');
         }
@@ -137,7 +132,7 @@ class PreAppMessage implements ArrayInterface
     * @throws \InvalidArgumentException
      * @return \BnplPartners\Factoring004\PreApp\PreAppMessage
     */
-    public static function createFromArray($data)
+    public static function createFromArray(array $data)
     {
         $requiredKeys = ['partnerData', 'billNumber', 'billAmount', 'itemsQuantity', 'successRedirect', 'postLink'];
 
@@ -147,17 +142,9 @@ class PreAppMessage implements ArrayInterface
             }
         }
 
-        $object = new self(
-            PartnerData::createFromArray($data['partnerData']),
-            $data['billNumber'],
-            $data['billAmount'],
-            $data['itemsQuantity'],
-            $data['successRedirect'],
-            $data['postLink'],
-            array_map(function (array $item) {
-                return Item::createFromArray($item);
-            }, $data['items'])
-        );
+        $object = new self(PartnerData::createFromArray($data['partnerData']), $data['billNumber'], $data['billAmount'], $data['itemsQuantity'], $data['successRedirect'], $data['postLink'], array_map(function (array $item) {
+            return Item::createFromArray($item);
+        }, $data['items']));
 
         if (isset($data['failRedirect'])) {
             $object->setFailRedirect($data['failRedirect']);
@@ -207,30 +194,27 @@ class PreAppMessage implements ArrayInterface
     }
 
     /**
-     * @param \BnplPartners\Factoring004\PreApp\DeliveryPoint $deliveryPoint
      * @return \BnplPartners\Factoring004\PreApp\PreAppMessage
      */
-    public function setDeliveryPoint($deliveryPoint)
+    public function setDeliveryPoint(DeliveryPoint $deliveryPoint)
     {
         $this->deliveryPoint = $deliveryPoint;
         return $this;
     }
 
     /**
-     * @param \DateTimeInterface $expiresAt
      * @return \BnplPartners\Factoring004\PreApp\PreAppMessage
      */
-    public function setExpiresAt($expiresAt)
+    public function setExpiresAt(DateTimeInterface $expiresAt)
     {
         $this->expiresAt = $expiresAt;
         return $this;
     }
 
     /**
-     * @param \DateTimeInterface $deliveryDate
      * @return \BnplPartners\Factoring004\PreApp\PreAppMessage
      */
-    public function setDeliveryDate($deliveryDate)
+    public function setDeliveryDate(DateTimeInterface $deliveryDate)
     {
         $this->deliveryDate = $deliveryDate;
         return $this;
@@ -325,7 +309,7 @@ class PreAppMessage implements ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return \BnplPartners\Factoring004\PreApp\Item[]
      */
     public function getItems()
     {
@@ -333,7 +317,7 @@ class PreAppMessage implements ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function toArray()
     {

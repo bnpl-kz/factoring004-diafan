@@ -2,7 +2,7 @@
 
 namespace BnplPartners\Factoring004\PreApp;
 
-use MyCLabs\Enum\Enum;
+use BnplPartners\Factoring004\AbstractEnum;
 
 /**
  * @method static static RECEIVED()
@@ -10,7 +10,7 @@ use MyCLabs\Enum\Enum;
  *
  * @psalm-immutable
  */
-final class Status extends Enum
+final class Status extends AbstractEnum
 {
     const RECEIVED = 'received';
     const ERROR = 'error';

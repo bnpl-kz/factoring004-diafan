@@ -22,7 +22,6 @@ class MerchantsOrders implements ArrayInterface
      */
     public function __construct($merchantId, array $orders)
     {
-        $merchantId = (string) $merchantId;
         $this->merchantId = $merchantId;
         $this->orders = $orders;
     }
@@ -32,7 +31,7 @@ class MerchantsOrders implements ArrayInterface
      * @psalm-param array{merchantId: string, orders: array{orderId: string, status: string, amount?: int}[]} $merchantsOrders
      * @return \BnplPartners\Factoring004\ChangeStatus\MerchantsOrders
      */
-    public static function createFromArray($merchantsOrders)
+    public static function createFromArray(array $merchantsOrders)
     {
         return new self(
             $merchantsOrders['merchantId'],
@@ -59,7 +58,7 @@ class MerchantsOrders implements ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return \BnplPartners\Factoring004\ChangeStatus\AbstractMerchantOrder[]
      */
     public function getOrders()
     {

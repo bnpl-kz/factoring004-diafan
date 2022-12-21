@@ -33,7 +33,6 @@ class Response implements ResponseInterface
      */
     public function __construct($statusCode, array $headers, array $body = [])
     {
-        $statusCode = (int) $statusCode;
         $this->statusCode = $statusCode;
         $this->headers = $headers;
         $this->body = $body;
@@ -41,10 +40,9 @@ class Response implements ResponseInterface
 
     /**
      * @throws \BnplPartners\Factoring004\Exception\DataSerializationException
-     * @param PsrResponse $response
      * @return \BnplPartners\Factoring004\Transport\Response
      */
-    public static function createFromPsrResponse($response)
+    public static function createFromPsrResponse(PsrResponse $response)
     {
         $content = (string) $response->getBody();
         $data = [];

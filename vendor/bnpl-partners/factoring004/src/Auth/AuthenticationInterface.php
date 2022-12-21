@@ -7,8 +7,7 @@ use Psr\Http\Message\RequestInterface;
 interface AuthenticationInterface
 {
     /**
-     * @param \Psr\Http\Message\RequestInterface $request
      * @return \Psr\Http\Message\RequestInterface
      */
-    public function apply($request);
+    public function apply(RequestInterface $request);
 }

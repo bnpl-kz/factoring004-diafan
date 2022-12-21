@@ -11,7 +11,6 @@ class DtoOtp implements JsonSerializable, ArrayInterface
      * @var string
      */
     private $msg;
-
     /**
      * @var bool
      */
@@ -23,8 +22,6 @@ class DtoOtp implements JsonSerializable, ArrayInterface
      */
     public function __construct($msg, $error = false)
     {
-        $msg = (string) $msg;
-        $error = (bool) $error;
         $this->msg = $msg;
         $this->error = $error;
     }
@@ -34,7 +31,7 @@ class DtoOtp implements JsonSerializable, ArrayInterface
      * @psalm-param array{msg: string, error?: bool|string} $changeStatus
      * @return \BnplPartners\Factoring004\Otp\DtoOtp
      */
-    public static function createFromArray($changeStatus)
+    public static function createFromArray(array $changeStatus)
     {
         $error = isset($changeStatus['error']) ? $changeStatus['error'] : false;
 
@@ -74,7 +71,7 @@ class DtoOtp implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function jsonSerialize()
     {

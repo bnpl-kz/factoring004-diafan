@@ -2,7 +2,7 @@
 
 namespace BnplPartners\Factoring004\ChangeStatus;
 
-use MyCLabs\Enum\Enum;
+use BnplPartners\Factoring004\AbstractEnum;
 
 /**
  * @method static static DELIVERY()
@@ -10,7 +10,7 @@ use MyCLabs\Enum\Enum;
  *
  * @psalm-immutable
  */
-final class DeliveryStatus extends Enum
+final class DeliveryStatus extends AbstractEnum
 {
     /**
      * @deprecated Use DeliveryStatus::DELIVERED instead

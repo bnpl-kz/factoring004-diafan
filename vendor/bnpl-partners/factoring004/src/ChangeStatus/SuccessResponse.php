@@ -30,9 +30,6 @@ class SuccessResponse implements JsonSerializable, ArrayInterface
      */
     public function __construct($error, $msg, $merchantOrderId = '')
     {
-        $error = (string) $error;
-        $msg = (string) $msg;
-        $merchantOrderId = (string) $merchantOrderId;
         $this->error = $error;
         $this->msg = $msg;
         $this->merchantOrderId = $merchantOrderId;
@@ -44,7 +41,7 @@ class SuccessResponse implements JsonSerializable, ArrayInterface
      *
      * @return \BnplPartners\Factoring004\ChangeStatus\SuccessResponse
      */
-    public static function createFromArray($response)
+    public static function createFromArray(array $response)
     {
         return new self($response['error'], $response['msg'], isset($response['merchantOrderId']) ? $response['merchantOrderId'] : '');
     }
@@ -87,7 +84,7 @@ class SuccessResponse implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, string>
      */
     public function jsonSerialize()
     {

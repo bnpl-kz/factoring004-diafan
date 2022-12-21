@@ -41,7 +41,7 @@ class ChangeStatusResponse implements JsonSerializable, ArrayInterface
      *
      * @return \BnplPartners\Factoring004\ChangeStatus\ChangeStatusResponse
      */
-    public static function createFromArray($responses)
+    public static function createFromArray(array $responses)
     {
         return new self(array_map(
             function (array $response) {
@@ -92,7 +92,7 @@ class ChangeStatusResponse implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, array<string, mixed>[]>
      */
     public function jsonSerialize()
     {

@@ -2,24 +2,23 @@
 
 namespace BnplPartners\Factoring004\ChangeStatus;
 
-use MyCLabs\Enum\Enum;
+use BnplPartners\Factoring004\AbstractEnum;
 
 /**
- * @method static static RE_TURN()
- * @method static static RETURN() Since PHP 7.0
+ * @method static static RETURN()
  * @method static static PARTRETURN()
  *
  * @psalm-immutable
  */
-final class ReturnStatus extends Enum
+final class ReturnStatus extends AbstractEnum
 {
     const RE_TURN = 'return';
     const PARTRETURN = 'part_return';
 
     public static function __callStatic($name, $arguments)
     {
-        if ($name === 'RETURN') {
-            $name = 'RE_TURN';
+        if ($name === "RETURN") {
+            $name = "RE_TURN";
         }
 
         return parent::__callStatic($name, $arguments);

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit205313d9c2f66ce011f78356acc22511
+class ComposerStaticInit488fd4c047dda7b02a02da5592e9e190
 {
     public static $files = array (
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
@@ -133,6 +133,7 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         'BnplPartners\\Factoring004Diafan\\Otp\\DeliveryOtpChecker' => __DIR__ . '/../..' . '/src/Otp/DeliveryOtpChecker.php',
         'BnplPartners\\Factoring004Diafan\\Otp\\OtpCheckerInterface' => __DIR__ . '/../..' . '/src/Otp/OtpCheckerInterface.php',
         'BnplPartners\\Factoring004Diafan\\Otp\\RefundOtpChecker' => __DIR__ . '/../..' . '/src/Otp/RefundOtpChecker.php',
+        'BnplPartners\\Factoring004\\AbstractEnum' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/AbstractEnum.php',
         'BnplPartners\\Factoring004\\AbstractResource' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/AbstractResource.php',
         'BnplPartners\\Factoring004\\Api' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Api.php',
         'BnplPartners\\Factoring004\\ArrayInterface' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ArrayInterface.php',
@@ -169,6 +170,14 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
         'BnplPartners\\Factoring004\\OAuth\\OAuthToken' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/OAuth/OAuthToken.php',
         'BnplPartners\\Factoring004\\OAuth\\OAuthTokenManager' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/OAuth/OAuthTokenManager.php',
         'BnplPartners\\Factoring004\\OAuth\\OAuthTokenManagerInterface' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/OAuth/OAuthTokenManagerInterface.php',
+        'BnplPartners\\Factoring004\\Order\\AbstractStatusConfirmation' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/AbstractStatusConfirmation.php',
+        'BnplPartners\\Factoring004\\Order\\ChangeStatusCaller' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/ChangeStatusCaller.php',
+        'BnplPartners\\Factoring004\\Order\\Delivery' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/Delivery.php',
+        'BnplPartners\\Factoring004\\Order\\FullRefund' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/FullRefund.php',
+        'BnplPartners\\Factoring004\\Order\\OrderManager' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/OrderManager.php',
+        'BnplPartners\\Factoring004\\Order\\PartialRefund' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/PartialRefund.php',
+        'BnplPartners\\Factoring004\\Order\\StatusConfirmationInterface' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/StatusConfirmationInterface.php',
+        'BnplPartners\\Factoring004\\Order\\StatusConfirmationResponse' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Order/StatusConfirmationResponse.php',
         'BnplPartners\\Factoring004\\Otp\\CheckOtp' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Otp/CheckOtp.php',
         'BnplPartners\\Factoring004\\Otp\\CheckOtpReturn' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Otp/CheckOtpReturn.php',
         'BnplPartners\\Factoring004\\Otp\\DtoOtp' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Otp/DtoOtp.php',
@@ -320,10 +329,10 @@ class ComposerStaticInit205313d9c2f66ce011f78356acc22511
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit205313d9c2f66ce011f78356acc22511::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit488fd4c047dda7b02a02da5592e9e190::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit488fd4c047dda7b02a02da5592e9e190::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit488fd4c047dda7b02a02da5592e9e190::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit488fd4c047dda7b02a02da5592e9e190::$classMap;
 
         }, null, ClassLoader::class);
     }

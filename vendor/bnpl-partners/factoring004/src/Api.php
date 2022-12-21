@@ -31,16 +31,15 @@ class Api
     private $changeStatus;
 
     /**
+     * @param string $baseUri
      * @param \BnplPartners\Factoring004\Auth\AuthenticationInterface|null $authentication
      * @param \BnplPartners\Factoring004\Transport\TransportInterface|null $transport
-     * @param string $baseUri
      */
     public function __construct(
         $baseUri,
-        $authentication = null,
-        $transport = null
+        AuthenticationInterface $authentication = null,
+        TransportInterface $transport = null
     ) {
-        $baseUri = (string) $baseUri;
         $transport = isset($transport) ? $transport : new GuzzleTransport();
 
         $this->preApps = new PreAppResource($transport, $baseUri, $authentication);
@@ -49,15 +48,15 @@ class Api
     }
 
     /**
-     * @param \BnplPartners\Factoring004\Auth\AuthenticationInterface|null $authentication
-     * @param \BnplPartners\Factoring004\Transport\TransportInterface|null $transport
      * @param string $baseUri
      * @return \BnplPartners\Factoring004\Api
+     * @param \BnplPartners\Factoring004\Auth\AuthenticationInterface|null $authentication
+     * @param \BnplPartners\Factoring004\Transport\TransportInterface|null $transport
      */
     public static function create(
         $baseUri,
-        $authentication = null,
-        $transport = null
+        AuthenticationInterface $authentication = null,
+        TransportInterface $transport = null
     ) {
         return new self($baseUri, $authentication, $transport);
     }
@@ -68,7 +67,6 @@ class Api
      */
     public function __get($name)
     {
-        $name = (string) $name;
         if ($name === 'preApps') {
             return $this->preApps;
         }

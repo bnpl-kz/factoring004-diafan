@@ -25,7 +25,6 @@ class CacheOAuthTokenManager implements OAuthTokenManagerInterface
      */
     public function __construct(OAuthTokenManagerInterface $tokenManager, CacheInterface $cache, $cacheKey)
     {
-        $cacheKey = (string) $cacheKey;
         $this->tokenManager = $tokenManager;
         $this->cache = $cache;
         $this->cacheKey = $cacheKey;
