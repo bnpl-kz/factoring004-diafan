@@ -45,7 +45,7 @@ class CheckOtp implements ArrayInterface
      * @psalm-param array{merchantId: string, merchantOrderId: string, otp: string, amount: int} $checkOtp
      * @return \BnplPartners\Factoring004\Otp\CheckOtp
      */
-    public static function createFromArray($checkOtp)
+    public static function createFromArray(array $checkOtp)
     {
         return new self($checkOtp['merchantId'], $checkOtp['merchantOrderId'], $checkOtp['otp'], $checkOtp['amount']);
     }
@@ -75,8 +75,8 @@ class CheckOtp implements ArrayInterface
     }
 
     /**
-     * @psalm-return array{merchantId: string, merchantOrderId: string, otp: string, amount: int}
-     * @return array<string, mixed>
+     * @psalm-return array{merchantId: string, merchantOrderId: string, otp: string}
+     * @return mixed[]
      */
     public function toArray()
     {

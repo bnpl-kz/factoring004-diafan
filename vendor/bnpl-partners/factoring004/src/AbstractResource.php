@@ -30,15 +30,14 @@ abstract class AbstractResource
     protected $authentication;
 
     /**
-     * @param \BnplPartners\Factoring004\Auth\AuthenticationInterface|null $authentication
      * @param string $baseUri
+     * @param \BnplPartners\Factoring004\Auth\AuthenticationInterface|null $authentication
      */
     public function __construct(
         TransportInterface $transport,
         $baseUri,
-        $authentication = null
+        AuthenticationInterface $authentication = null
     ) {
-        $baseUri = (string) $baseUri;
         if (!filter_var($baseUri, FILTER_VALIDATE_URL)) {
             throw new InvalidArgumentException('Base URI cannot be empty');
         }
@@ -59,7 +58,7 @@ abstract class AbstractResource
      * @throws \BnplPartners\Factoring004\Exception\NetworkException
      * @throws \BnplPartners\Factoring004\Exception\TransportException
      */
-    protected function postRequest($path, $data = [], $headers = [])
+    protected function postRequest($path, array $data = [], array $headers = [])
     {
         return $this->request('POST', $path, $data, $headers);
     }
@@ -76,7 +75,7 @@ abstract class AbstractResource
      * @throws \BnplPartners\Factoring004\Exception\NetworkException
      * @throws \BnplPartners\Factoring004\Exception\TransportException
      */
-    protected function request($method, $path, $data = [], $headers = [])
+    protected function request($method, $path, array $data = [], array $headers = [])
     {
         $this->transport->setBaseUri($this->baseUri);
         $this->transport->setAuthentication($this->authentication);

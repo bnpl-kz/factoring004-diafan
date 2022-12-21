@@ -24,8 +24,6 @@ class ValidationErrorDetail implements ArrayInterface
      */
     public function __construct($error, $field)
     {
-        $error = (string) $error;
-        $field = (string) $field;
         $this->error = $error;
         $this->field = $field;
     }
@@ -35,7 +33,7 @@ class ValidationErrorDetail implements ArrayInterface
      * @psalm-param array{error: string, field: string} $detail
      * @return \BnplPartners\Factoring004\PreApp\ValidationErrorDetail
      */
-    public static function createFromArray($detail)
+    public static function createFromArray(array $detail)
     {
         return new ValidationErrorDetail($detail['error'], $detail['field']);
     }
@@ -45,9 +43,9 @@ class ValidationErrorDetail implements ArrayInterface
      *
      * @psalm-param array{error: string, field: string}[] $details
      *
-     * @return mixed[]
+     * @return \BnplPartners\Factoring004\PreApp\ValidationErrorDetail[]
      */
-    public static function createMany($details)
+    public static function createMany(array $details)
     {
         return array_map([ValidationErrorDetail::class, 'createFromArray'], $details);
     }
@@ -69,7 +67,7 @@ class ValidationErrorDetail implements ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, string>
      * @psalm-return array{error: string, field: string}
      */
     public function toArray()

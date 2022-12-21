@@ -13,9 +13,9 @@ class UnexpectedResponseException extends ApiException
     private $response;
 
     /**
+     * @param \Throwable $previous
      * @param string $message
      * @param int $code
-     * @param \Throwable $previous
      */
     public function __construct(
         ResponseInterface $response,
@@ -23,8 +23,6 @@ class UnexpectedResponseException extends ApiException
         $code = 0,
         $previous = null
     ) {
-        $message = (string) $message;
-        $code = (int) $code;
         parent::__construct($message, $code, $previous);
 
         $this->response = $response;

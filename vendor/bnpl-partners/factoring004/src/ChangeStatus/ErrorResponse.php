@@ -35,10 +35,6 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
      */
     public function __construct($code, $error, $message, $merchantOrderId = '')
     {
-        $code = (string) $code;
-        $error = (string) $error;
-        $message = (string) $message;
-        $merchantOrderId = (string) $merchantOrderId;
         $this->code = $code;
         $this->error = $error;
         $this->message = $message;
@@ -50,7 +46,7 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
      * @psalm-param array{code: string, error: string, message: string, merchantOrderId?: string} $response
      * @return \BnplPartners\Factoring004\ChangeStatus\ErrorResponse
      */
-    public static function createFromArray($response)
+    public static function createFromArray(array $response)
     {
         return new self($response['code'], $response['error'], $response['message'], isset($response['merchantOrderId']) ? $response['merchantOrderId'] : '');
     }
@@ -102,7 +98,7 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, string>
      */
     public function jsonSerialize()
     {

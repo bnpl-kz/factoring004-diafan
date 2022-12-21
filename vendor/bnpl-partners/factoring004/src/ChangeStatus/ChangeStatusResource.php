@@ -7,7 +7,6 @@ use BnplPartners\Factoring004\Exception\AuthenticationException;
 use BnplPartners\Factoring004\Exception\EndpointUnavailableException;
 use BnplPartners\Factoring004\Exception\ErrorResponseException;
 use BnplPartners\Factoring004\Exception\UnexpectedResponseException;
-use BnplPartners\Factoring004\Response\ErrorResponse;
 use BnplPartners\Factoring004\Transport\ResponseInterface;
 
 class ChangeStatusResource extends AbstractResource
@@ -24,11 +23,11 @@ class ChangeStatusResource extends AbstractResource
      * @throws \BnplPartners\Factoring004\Exception\UnexpectedResponseException
      * @return \BnplPartners\Factoring004\ChangeStatus\ChangeStatusResponse
      */
-    public function changeStatusJson($merchantOrders)
+    public function changeStatusJson(array $merchantOrders)
     {
         $response = $this->request(
             'PUT',
-            '/accountingservice/1.0/changeStatus/json',
+            '/accounting/changeStatus/json',
             array_map(function (MerchantsOrders $orders) {
                 return $orders->toArray();
             }, $merchantOrders)
@@ -73,7 +72,7 @@ class ChangeStatusResource extends AbstractResource
             }
 
             /** @psalm-suppress ArgumentTypeCoercion */
-            throw new ErrorResponseException(ErrorResponse::createFromArray($data));
+            throw new ErrorResponseException(\BnplPartners\Factoring004\Response\ErrorResponse::createFromArray($data));
         }
     }
 }

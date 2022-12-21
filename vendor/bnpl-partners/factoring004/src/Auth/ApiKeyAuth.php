@@ -18,15 +18,13 @@ class ApiKeyAuth implements AuthenticationInterface
      */
     public function __construct($apiKey)
     {
-        $apiKey = (string) $apiKey;
         $this->apiKey = $apiKey;
     }
 
     /**
-     * @param \Psr\Http\Message\RequestInterface $request
      * @return \Psr\Http\Message\RequestInterface
      */
-    public function apply($request)
+    public function apply(RequestInterface $request)
     {
         return $request->withHeader(static::HEADER_NAME, $this->apiKey);
     }

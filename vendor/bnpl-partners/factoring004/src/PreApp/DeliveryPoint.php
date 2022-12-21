@@ -43,7 +43,7 @@ class DeliveryPoint implements ArrayInterface
       } $deliveryPoint
      * @return \BnplPartners\Factoring004\PreApp\DeliveryPoint
     */
-    public static function createFromArray($deliveryPoint)
+    public static function createFromArray(array $deliveryPoint)
     {
         $self = new self();
 
@@ -167,16 +167,16 @@ class DeliveryPoint implements ArrayInterface
     }
 
     /**
-     * @return mixed[]
-    * @psalm-return array{
-         region: string,
-         city: string,
-         district: string,
-         street: string,
-         house: string,
-         flat: string
-      }
-    */
+     * @return array<string, string>
+     * @psalm-return array{
+          region: string,
+          city: string,
+          district: string,
+          street: string,
+          house: string,
+          flat: string
+       }
+     */
     public function toArray()
     {
         return [

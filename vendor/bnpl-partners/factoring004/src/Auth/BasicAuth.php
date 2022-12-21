@@ -24,17 +24,14 @@ class BasicAuth implements AuthenticationInterface
      */
     public function __construct($username, $password)
     {
-        $username = (string) $username;
-        $password = (string) $password;
         $this->username = $username;
         $this->password = $password;
     }
 
     /**
-     * @param \Psr\Http\Message\RequestInterface $request
      * @return \Psr\Http\Message\RequestInterface
      */
-    public function apply($request)
+    public function apply(RequestInterface $request)
     {
         return $request->withHeader(static::HEADER_NAME, static::AUTH_SCHEMA . ' ' . $this->encodeCredentials());
     }

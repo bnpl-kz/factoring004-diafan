@@ -45,11 +45,6 @@ class Item implements ArrayInterface
         $itemPrice,
         $itemSum
     ) {
-        $itemId = (string) $itemId;
-        $itemName = (string) $itemName;
-        $itemQuantity = (int) $itemQuantity;
-        $itemPrice = (int) $itemPrice;
-        $itemSum = (int) $itemSum;
         $this->itemId = $itemId;
         $this->itemName = $itemName;
         $this->itemQuantity = $itemQuantity;
@@ -70,15 +65,9 @@ class Item implements ArrayInterface
      *
      * @return \BnplPartners\Factoring004\PreApp\Item
      */
-    public static function createFromArray($item)
+    public static function createFromArray(array $item)
     {
-        $self = new self(
-            $item['itemId'],
-            $item['itemName'],
-            $item['itemQuantity'],
-            $item['itemPrice'],
-            $item['itemSum']
-        );
+        $self = new self($item['itemId'], $item['itemName'], $item['itemQuantity'], $item['itemPrice'], $item['itemSum']);
 
         if (isset($item['itemCategory'])) {
             $self->setItemCategory($item['itemCategory']);
@@ -141,7 +130,6 @@ class Item implements ArrayInterface
      */
     public function setItemCategory($itemCategory)
     {
-        $itemCategory = (string) $itemCategory;
         $this->itemCategory = $itemCategory;
         return $this;
     }

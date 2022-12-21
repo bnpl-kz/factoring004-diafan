@@ -27,7 +27,7 @@ class GuzzleTransport extends AbstractTransport
     /**
      * @param \GuzzleHttp\ClientInterface|null $client
      */
-    public function __construct($client = null)
+    public function __construct(ClientInterface $client = null)
     {
         parent::__construct();
 
@@ -36,10 +36,9 @@ class GuzzleTransport extends AbstractTransport
 
     /**
      * @param string $method
-     * @param \Psr\Http\Message\UriInterface $uri
      * @return \Psr\Http\Message\RequestInterface
      */
-    protected function createRequest($method, $uri)
+    protected function createRequest($method, UriInterface $uri)
     {
         return new Request($method, $uri);
     }
@@ -63,10 +62,9 @@ class GuzzleTransport extends AbstractTransport
     }
 
     /**
-     * @param \Psr\Http\Message\RequestInterface $request
      * @return PsrResponseInterface
      */
-    protected function sendRequest($request)
+    protected function sendRequest(RequestInterface $request)
     {
         try {
             return $this->client->send($request);

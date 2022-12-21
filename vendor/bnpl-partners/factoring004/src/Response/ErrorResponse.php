@@ -28,18 +28,17 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
      * @var string|null
      */
     protected $type;
-
     /**
      * @var string|null
      */
     protected $error;
 
     /**
-     * @param string|null $description
-     * @param string|null $type
-     * @param string|null $error
      * @param string $code
      * @param string $message
+     * @param string $description
+     * @param string $type
+     * @param string $error
      */
     public function __construct(
         $code,
@@ -48,8 +47,6 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
         $type = null,
         $error = null
     ) {
-        $code = (string) $code;
-        $message = (string) $message;
         $this->code = $code;
         $this->message = $message;
         $this->description = $description;
@@ -62,15 +59,9 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
      * @psalm-param array{code: string|int, message: string, description?: string, type?: string, error?: string} $response
      * @return \BnplPartners\Factoring004\Response\ErrorResponse
      */
-    public static function createFromArray($response)
+    public static function createFromArray(array $response)
     {
-        return new self(
-            (string) $response['code'],
-            $response['message'],
-            isset($response['description']) ? $response['description'] : null,
-            isset($response['type']) ? $response['type'] : null,
-            isset($response['error']) ? $response['error'] : null
-        );
+        return new self((string) $response['code'], $response['message'], isset($response['description']) ? $response['description'] : null, isset($response['type']) ? $response['type'] : null, isset($response['error']) ? $response['error'] : null);
     }
 
     /**
@@ -114,7 +105,7 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      * @psalm-return array{code: string, message: string, description?: string, type?: string, error?: string}
      */
     public function toArray()
@@ -140,7 +131,7 @@ class ErrorResponse implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function jsonSerialize()
     {

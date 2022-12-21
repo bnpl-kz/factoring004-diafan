@@ -40,7 +40,7 @@ class SendOtp implements ArrayInterface
      * @psalm-param array{merchantId: string, merchantOrderId: string, amount: int} $sendOtp
      * @return \BnplPartners\Factoring004\Otp\SendOtp
      */
-    public static function createFromArray($sendOtp)
+    public static function createFromArray(array $sendOtp)
     {
         return new self($sendOtp['merchantId'], $sendOtp['merchantOrderId'], $sendOtp['amount']);
     }
@@ -71,7 +71,7 @@ class SendOtp implements ArrayInterface
 
     /**
      * @psalm-return array{merchantId: string, merchantOrderId: string, amount: int}
-     * @return array<string, mixed>
+     * @return mixed[]
      */
     public function toArray()
     {

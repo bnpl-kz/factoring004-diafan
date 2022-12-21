@@ -34,10 +34,6 @@ class CheckOtpReturn implements ArrayInterface
      */
     public function __construct($amountAr, $merchantId, $merchantOrderId, $otp)
     {
-        $amountAr = (int) $amountAr;
-        $merchantId = (string) $merchantId;
-        $merchantOrderId = (string) $merchantOrderId;
-        $otp = (string) $otp;
         $this->amountAr = $amountAr;
         $this->merchantId = $merchantId;
         $this->merchantOrderId = $merchantOrderId;
@@ -50,7 +46,7 @@ class CheckOtpReturn implements ArrayInterface
      * @psalm-param array{amountAR: int, merchantId: string, merchantOrderId: string, otp: string} $checkOtpReturn
      * @return \BnplPartners\Factoring004\Otp\CheckOtpReturn
      */
-    public static function createFromArray($checkOtpReturn)
+    public static function createFromArray(array $checkOtpReturn)
     {
         return new self($checkOtpReturn['amountAR'], $checkOtpReturn['merchantId'], $checkOtpReturn['merchantOrderId'], $checkOtpReturn['otp']);
     }

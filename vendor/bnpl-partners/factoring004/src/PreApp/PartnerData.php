@@ -35,11 +35,16 @@ class PartnerData implements ArrayInterface
      * @param string $partnerName
      * @param string $partnerCode
      * @param string $pointCode
-     * @param string|null $partnerEmail
-     * @param string|null $partnerWebsite
+     * @param string $partnerEmail
+     * @param string $partnerWebsite
      */
-    public function __construct($partnerName, $partnerCode, $pointCode, $partnerEmail = null, $partnerWebsite = null)
-    {
+    public function __construct(
+        $partnerName,
+        $partnerCode,
+        $pointCode,
+        $partnerEmail = null,
+        $partnerWebsite = null
+    ) {
         $this->partnerName = $partnerName;
         $this->partnerCode = $partnerCode;
         $this->pointCode = $pointCode;
@@ -48,19 +53,19 @@ class PartnerData implements ArrayInterface
     }
 
     /**
-     * @param array<string, string> $partnerData
-     * @psalm-param array{
-           partnerName: string,
-           partnerCode: string,
-           pointCode: string,
-           partnerEmail?: string|null,
-           partnerWebsite?: string|null,
-      } $partnerData
-     *
-     * @throws \InvalidArgumentException
+    * @param array<string, string> $partnerData
+    * @psalm-param array{
+          partnerName: string,
+          partnerCode: string,
+          pointCode: string,
+          partnerEmail?: string|null,
+          partnerWebsite?: string|null,
+     } $partnerData
+    *
+    * @throws \InvalidArgumentException
      * @return \BnplPartners\Factoring004\PreApp\PartnerData
-     */
-    public static function createFromArray($partnerData)
+    */
+    public static function createFromArray(array $partnerData)
     {
         if (empty($partnerData['partnerName'])) {
             throw new InvalidArgumentException("Key 'partnerName' is required");
@@ -74,13 +79,7 @@ class PartnerData implements ArrayInterface
             throw new InvalidArgumentException("Key 'pointCode' is required");
         }
 
-        return new self(
-            $partnerData['partnerName'],
-            $partnerData['partnerCode'],
-            $partnerData['pointCode'],
-            isset($partnerData['partnerEmail']) ? $partnerData['partnerEmail'] : null,
-            isset($partnerData['partnerWebsite']) ? $partnerData['partnerWebsite'] : null
-        );
+        return new self($partnerData['partnerName'], $partnerData['partnerCode'], $partnerData['pointCode'], isset($partnerData['partnerEmail']) ? $partnerData['partnerEmail'] : null, isset($partnerData['partnerWebsite']) ? $partnerData['partnerWebsite'] : null);
     }
 
     /**

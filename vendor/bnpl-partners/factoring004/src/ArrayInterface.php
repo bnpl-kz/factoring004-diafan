@@ -5,7 +5,7 @@ namespace BnplPartners\Factoring004;
 interface ArrayInterface
 {
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function toArray();
 }

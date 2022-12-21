@@ -25,11 +25,10 @@ class DeliveryOrder extends AbstractMerchantOrder
 
     /**
      * @param array<string, mixed> $order
-     *
      * @psalm-param array{orderId: string, status: string, amount: int} $order
      * @return \BnplPartners\Factoring004\ChangeStatus\DeliveryOrder
      */
-    public static function createFromArray($order)
+    public static function createFromArray(array $order)
     {
         return new self($order['orderId'], new DeliveryStatus($order['status']), $order['amount']);
     }
@@ -43,8 +42,16 @@ class DeliveryOrder extends AbstractMerchantOrder
     }
 
     /**
-     * @return array<string, mixed>
+     * @return \BnplPartners\Factoring004\ChangeStatus\DeliveryStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
      * @psalm-return array{orderId: string, status: string, amount: int}
+     * @return mixed[]
      */
     public function toArray()
     {

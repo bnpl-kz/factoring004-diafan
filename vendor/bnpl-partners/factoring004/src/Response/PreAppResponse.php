@@ -30,8 +30,6 @@ class PreAppResponse implements JsonSerializable, ArrayInterface
      */
     public function __construct(Status $status, $preAppId, $redirectLink)
     {
-        $preAppId = (string) $preAppId;
-        $redirectLink = (string) $redirectLink;
         $this->status = $status;
         $this->preAppId = $preAppId;
         $this->redirectLink = $redirectLink;
@@ -42,7 +40,7 @@ class PreAppResponse implements JsonSerializable, ArrayInterface
      * @psalm-param array{status: string, preappId: string, redirectLink: string} $data
      * @return \BnplPartners\Factoring004\Response\PreAppResponse
      */
-    public static function createFromArray($data)
+    public static function createFromArray(array $data)
     {
         return new self(new Status($data['status']), $data['preappId'], $data['redirectLink']);
     }
@@ -72,7 +70,7 @@ class PreAppResponse implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, string>
      * @psalm-return array{status: string, preappId: string, redirectLink: string}
      */
     public function toArray()
@@ -85,7 +83,7 @@ class PreAppResponse implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function jsonSerialize()
     {

@@ -12,16 +12,13 @@ class AuthenticationException extends ApiException
     protected $description;
 
     /**
+     * @param \Throwable $previous
      * @param string $description
      * @param string $message
      * @param int $code
-     * @param \Throwable $previous
      */
     public function __construct($description, $message = '', $code = 0, $previous = null)
     {
-        $description = (string) $description;
-        $message = (string) $message;
-        $code = (int) $code;
         parent::__construct($message, $code, $previous);
 
         $this->description = $description;

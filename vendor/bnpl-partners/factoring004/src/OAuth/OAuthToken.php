@@ -35,10 +35,6 @@ class OAuthToken implements JsonSerializable, ArrayInterface
      */
     public function __construct($accessToken, $scope, $tokenType, $expiresIn)
     {
-        $accessToken = (string) $accessToken;
-        $scope = (string) $scope;
-        $tokenType = (string) $tokenType;
-        $expiresIn = (int) $expiresIn;
         $this->accessToken = $accessToken;
         $this->scope = $scope;
         $this->expiresIn = $expiresIn;
@@ -50,7 +46,7 @@ class OAuthToken implements JsonSerializable, ArrayInterface
      * @psalm-param array{access_token: string, scope: string, expires_in: int, token_type: string} $token
      * @return \BnplPartners\Factoring004\OAuth\OAuthToken
      */
-    public static function createFromArray($token)
+    public static function createFromArray(array $token)
     {
         return new self($token['access_token'], $token['scope'], $token['token_type'], $token['expires_in']);
     }
@@ -102,7 +98,7 @@ class OAuthToken implements JsonSerializable, ArrayInterface
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function jsonSerialize()
     {

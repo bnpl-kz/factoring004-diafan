@@ -26,7 +26,6 @@ class PostLinkSignatureCalculator
 
     /**
      * @param string $secretKey
-     *
      * @return \BnplPartners\Factoring004\Signature\PostLinkSignatureCalculator
      */
     public static function create($secretKey)
@@ -37,7 +36,6 @@ class PostLinkSignatureCalculator
     /**
      * @param array<string, mixed> $data
      * @psalm-param array{status: string, billNumber: string, preappId: string, scoring?: int} $data
-     *
      * @return string
      */
     public function calculate(array $data)
@@ -48,7 +46,6 @@ class PostLinkSignatureCalculator
     /**
      * @param array<string, mixed> $data
      * @psalm-param array{status: string, billNumber: string, preappId: string, scoring?: int} $data
-     *
      * @return string
      */
     private function convertDataToString(array $data)
@@ -66,7 +63,6 @@ class PostLinkSignatureCalculator
 
     /**
      * @param string $data
-     *
      * @return string
      */
     private function calculateHash($data)

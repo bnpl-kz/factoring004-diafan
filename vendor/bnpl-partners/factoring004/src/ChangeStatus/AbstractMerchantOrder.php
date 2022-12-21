@@ -26,7 +26,6 @@ abstract class AbstractMerchantOrder implements ArrayInterface
      */
     public function __construct($orderId, Enum $status)
     {
-        $orderId = (string) $orderId;
         $this->orderId = $orderId;
         $this->status = $status;
     }

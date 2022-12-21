@@ -15,7 +15,7 @@ interface ResponseInterface
     public function getStatusCode();
 
     /**
-     * @return mixed[]
+     * @return array<string, string>
      */
     public function getHeaders();
 

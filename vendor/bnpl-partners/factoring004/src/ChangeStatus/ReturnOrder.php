@@ -18,8 +18,6 @@ class ReturnOrder extends AbstractMerchantOrder
      */
     public function __construct($orderId, ReturnStatus $status, $amount)
     {
-        $orderId = (string) $orderId;
-        $amount = (int) $amount;
         parent::__construct($orderId, $status);
 
         $this->amount = $amount;
@@ -30,7 +28,7 @@ class ReturnOrder extends AbstractMerchantOrder
      * @psalm-param array{orderId: string, status: string, amount: int} $order
      * @return \BnplPartners\Factoring004\ChangeStatus\ReturnOrder
      */
-    public static function createFromArray($order)
+    public static function createFromArray(array $order)
     {
         return new self($order['orderId'], new ReturnStatus($order['status']), $order['amount']);
     }
@@ -41,6 +39,14 @@ class ReturnOrder extends AbstractMerchantOrder
     public function getAmount()
     {
         return $this->amount;
+    }
+
+    /**
+     * @return \BnplPartners\Factoring004\ChangeStatus\ReturnStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**
