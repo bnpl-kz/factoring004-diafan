@@ -88,10 +88,12 @@ class Payment_factoring004_admin
     {
         $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус отмененных заказов').'</div><select name="factoring004_status_cancel">';
         foreach ($this->getStatuses() as $status) {
+            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
+            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
             if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
             } else {
-                $html .= '<option '.($status['name1'] === 'Отменен' || $status['name2'] === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option '.($statusName1 === 'Отменен' || $statusName2 === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
             }
         }
         $html .= '</select></div>';
@@ -102,10 +104,12 @@ class Payment_factoring004_admin
     {
         $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус возвращенных заказов').'</div><select name="factoring004_status_return">';
         foreach ($this->getStatuses() as $status) {
+            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
+            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
             if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
             } else {
-                $html .= '<option '.($status['name1'] === 'Отменен' || $status['name2'] === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option '.($statusName1 === 'Отменен' || $statusName2 === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
             }
         }
         $html .= '</select></div>';
@@ -116,10 +120,12 @@ class Payment_factoring004_admin
     {
         $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус доставленных заказов').'</div><select name="factoring004_status_delivery">';
         foreach ($this->getStatuses() as $status) {
+            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
+            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
             if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
             } else {
-                $html .= '<option '.($status['name1'] === 'Выполнен' || $status['name2'] === 'Completed' ? 'selected' : '').' value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option '.($statusName1 === 'Выполнен' || $statusName2 === 'Completed' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
             }
         }
         $html .= '</select></div>';
@@ -130,10 +136,12 @@ class Payment_factoring004_admin
     {
         $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус неоплаченных заказов').'</div><select name="factoring004_status_unpaid">';
         foreach ($this->getStatuses() as $status) {
+            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
+            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
             if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
             } else {
-                $html .= '<option '.($status['name1'] === 'Отменен' || $status['name2'] === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option '.($statusName1 === 'Отменен' || $statusName2 === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
             }
         }
         $html .= '</select></div>';
@@ -144,10 +152,12 @@ class Payment_factoring004_admin
     {
         $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус оплаченных заказов').'</div><select name="factoring004_status_paid">';
         foreach ($this->getStatuses() as $status) {
+            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
+            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
             if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
             } else {
-                $html .= '<option '.($status['name1'] === 'В обработке' || $status['name2'] === 'In processing' ? 'selected' : '').' value='.$status['id'].'>'.$status['name1'].'</option>';
+                $html .= '<option '.($statusName1 === 'В обработке' || $statusName2 === 'In processing' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
             }
         }
         $html .= '</select></div>';
