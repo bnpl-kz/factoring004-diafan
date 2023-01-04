@@ -71,12 +71,11 @@ class Order_factoring004_admin_order extends Diafan
         }
 
         try {
+            $amount = $this->calculateAmount($_POST);
             if (isset($_POST['otp'])) {
-                $this->checkOtp($order, $_POST['otp'], $_POST['status_id']);
+                $this->checkOtp($order, $_POST['otp'], $_POST['status_id'], $amount);
                 return;
             }
-
-            $amount = $this->calculateAmount($_POST);
 
             if ($amount > $order['summ']) {
                 $this->putSession('error_' . $this->diafan->id, 'Сумма товаров изменилась в большую сторону');
@@ -157,9 +156,16 @@ class Order_factoring004_admin_order extends Diafan
      *
      * @throws \BnplPartners\Factoring004\Exception\PackageException
      */
-    private function checkOtp(array $order, $otp, $statusId)
+    private function checkOtp(array $order, $otp, $statusId, $amount = 0)
     {
-        $this->resolveOtpChecker($statusId)->check($order['id'], (int) ceil($order['summ']), $otp);
+        $statusForChecker = $order['summ'] > $amount && $amount > 0 ? PaymentConfig::get('factoring004_status_return') : $statusId;
+        $otpChecker = $this->resolveOtpChecker($statusForChecker);
+        if ($otpChecker instanceof RefundOtpChecker) {
+            if ($amount === (int) $order['summ']) {
+                $amount = 0;
+            }
+        }
+        $otpChecker->check($order['id'], (int) ceil($amount), $otp);
     }
 
     /**
@@ -199,8 +205,13 @@ class Order_factoring004_admin_order extends Diafan
         } catch (InvalidArgumentException $e) {
             return null;
         }
+        // потому что при возврате в отп должен уходить 0 а не вся сумма заказа
+        $amount = null;
+        if ($handler instanceof FullRefundHandler) {
+            $amount = 0;
+        }
 
-        $shouldConfirmOtp = $handler->handle($order);
+        $shouldConfirmOtp = $handler->handle($order, $amount);
 
         if ($shouldConfirmOtp) {
             $this->putSession('send_otp_' . $this->diafan->id, true);
