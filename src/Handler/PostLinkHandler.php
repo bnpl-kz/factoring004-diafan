@@ -53,15 +53,17 @@ class PostLinkHandler
             return;
         }
 
-        $pay = $payment_inc->check_pay($request["billNumber"], 'factoring004');
+        $orderPayment = DB::query("SELECT id FROM {payment_history} WHERE element_id=%d", $request["billNumber"]);
+        if ($row = DB::fetch_row($orderPayment)) {
+            $paymentId = $row[0];
+        } else {
+            header('HTTP/1.1 400 Bad Request');
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Order payment not found']);
+            return;
+        }
 
-        DB::query(
-            "INSERT INTO {factoring004_order_preapps}
-                        (order_id, preapp_uid)
-                        VALUES 
-                        ('%d','%s')",
-            $request["billNumber"], $request['preappId']
-        );
+        $pay = $payment_inc->check_pay($paymentId, 'factoring004');
         $payment_inc->success($pay, 'pay');
 
         header('Content-Type: application/json');
