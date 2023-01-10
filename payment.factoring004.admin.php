@@ -17,7 +17,6 @@ class Payment_factoring004_admin
         $this->diafan = &$diafan;
         $this->diafan->_admin->js_view[] = 'modules/payment/backend/factoring004/assets/js/custom.js';
         $this->diafan->_admin->css_view[] = 'modules/payment/backend/factoring004/assets/css/style.css';
-        $this->createTable();
         $file_payment = file_get_contents('modules/payment/views/payment.view.list.php');
 
         if (!strripos($file_payment, 'require_once "modules/payment/backend/factoring004/payment.factoring004.custom.php";')) {
@@ -224,19 +223,5 @@ class Payment_factoring004_admin
     public function getStatuses()
     {
         return DB::query_fetch_all("SELECT * FROM {shop_order_status}");
-    }
-
-    private function createTable()
-    {
-        DB::query(
-            "CREATE TABLE IF NOT EXISTS {factoring004_order_preapps} (
-              `id` int(11) NOT NULL AUTO_INCREMENT,
-              `order_id` int(11) NOT NULL,
-              `preapp_uid` varchar(255) NOT NULL,
-              `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-                PRIMARY KEY(`id`),
-                UNIQUE(`order_id`,`preapp_uid`)
-            ) ENGINE=InnoDB;"
-        );
     }
 }
