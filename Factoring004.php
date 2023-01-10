@@ -34,7 +34,7 @@ class Factoring004
             'phoneNumber'=> empty($data['details']['phone'])
                 ? null
                 : preg_replace('/^8|\+7/', '7', $data['details']['phone']),
-            'billNumber' => $data["id"],
+            'billNumber' => $data["element_id"],
             'billAmount' => (int) round($data['summ']),
             'itemsQuantity' => $this->getItemsQuantityCount($data['details']['goods']),
             'successRedirect' => 'http'.(IS_HTTPS ? "s" : '').'://'.$_SERVER['HTTP_HOST'],
