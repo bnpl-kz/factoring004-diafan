@@ -161,7 +161,7 @@ class Order_factoring004_admin_order extends Diafan
         $statusForChecker = $order['summ'] > $amount && $amount > 0 ? PaymentConfig::get('factoring004_status_return') : $statusId;
         $otpChecker = $this->resolveOtpChecker($statusForChecker);
         if ($otpChecker instanceof RefundOtpChecker) {
-            if ($amount === (int) $order['summ']) {
+            if ((int) ceil($amount) === (int) ceil($order['summ'])) {
                 $amount = 0;
             }
         }
