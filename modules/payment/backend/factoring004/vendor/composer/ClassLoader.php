@@ -42,6 +42,9 @@ namespace Composer\Autoload;
  */
 class ClassLoader
 {
+    /** @var \Closure(string):void */
+    private static $includeFile;
+
     /** @var ?string */
     private $vendorDir;
 
@@ -106,6 +109,7 @@ class ClassLoader
     public function __construct($vendorDir = null)
     {
         $this->vendorDir = $vendorDir;
+        self::initializeIncludeClosure();
     }
 
     /**
@@ -425,7 +429,7 @@ class ClassLoader
     public function loadClass($class)
     {
         if ($file = $this->findFile($class)) {
-            includeFile($file);
+            (self::$includeFile)($file);
 
             return true;
         }
@@ -493,7 +497,7 @@ class ClassLoader
     private function findFileWithExtension($class, $ext)
     {
         // PSR-4 lookup
-        $logicalPathPsr4 = ClassLoader . phpstrtr($class, '\\', DIRECTORY_SEPARATOR);
+        $logicalPathPsr4 = strtr($class, '\\', DIRECTORY_SEPARATOR) . $ext;
 
         $first = $class[0];
         if (isset($this->prefixLengthsPsr4[$first])) {
@@ -522,10 +526,11 @@ class ClassLoader
         // PSR-0 lookup
         if (false !== $pos = strrpos($class, '\\')) {
             // namespaced class name
-            $logicalPathPsr0 = ClassLoader . phpsubstr($logicalPathPsr4, 0, $pos + 1);
+            $logicalPathPsr0 = substr($logicalPathPsr4, 0, $pos + 1)
+                . strtr(substr($logicalPathPsr4, $pos + 1), '_', DIRECTORY_SEPARATOR);
         } else {
             // PEAR-like class name
-            $logicalPathPsr0 = ClassLoader . phpstrtr($class, '_', DIRECTORY_SEPARATOR);
+            $logicalPathPsr0 = strtr($class, '_', DIRECTORY_SEPARATOR) . $ext;
         }
 
         if (isset($this->prefixesPsr0[$first])) {
@@ -554,18 +559,23 @@ class ClassLoader
 
         return false;
     }
-}
 
-/**
- * Scope isolated include.
- *
- * Prevents access to $this/self from included files.
- *
- * @param  string $file
- * @return void
- * @private
- */
-function includeFile($file)
-{
-    include $file;
+    private static function initializeIncludeClosure(): void
+    {
+        if (self::$includeFile !== null) {
+            return;
+        }
+
+        /**
+         * Scope isolated include.
+         *
+         * Prevents access to $this/self from included files.
+         *
+         * @param  string $file
+         * @return void
+         */
+        self::$includeFile = static function($file) {
+            include $file;
+        };
+    }
 }
