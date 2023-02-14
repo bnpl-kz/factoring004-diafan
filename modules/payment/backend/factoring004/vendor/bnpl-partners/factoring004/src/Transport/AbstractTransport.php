@@ -151,7 +151,7 @@ abstract class AbstractTransport implements TransportInterface
     {
         $uri = isset($this->baseUri) ? $this->baseUri : $this->createUri('/');
 
-        $path = rtrim($uri->getPath(), '/') . 'AbstractTransport.php/' . ltrim($path, '/');
+        $path = rtrim($uri->getPath(), '/') . '/' . ltrim($path, '/');
         $uri = $uri->withPath($path);
 
         return $query ? $uri->withQuery(http_build_query($query)) : $uri;
