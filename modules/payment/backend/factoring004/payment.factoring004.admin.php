@@ -15,13 +15,6 @@ class Payment_factoring004_admin
     public function __construct(&$diafan)
     {
         $this->diafan = &$diafan;
-        $this->diafan->_admin->js_view[] = 'modules/payment/backend/factoring004/assets/js/custom.js';
-        $this->diafan->_admin->css_view[] = 'modules/payment/backend/factoring004/assets/css/style.css';
-        $file_payment = file_get_contents('modules/payment/views/payment.view.list.php');
-
-        if (!strripos($file_payment, 'require_once "modules/payment/backend/factoring004/payment.factoring004.custom.php";')) {
-            file_put_contents('modules/payment/views/payment.view.list.php',PHP_EOL . 'require_once "modules/payment/backend/factoring004/payment.factoring004.custom.php";',FILE_APPEND);
-        }
 
         $this->config = array(
             'name' => 'Рассрочка 0-0-4',
