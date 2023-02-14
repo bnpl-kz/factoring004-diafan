@@ -43,84 +43,8 @@ class Payment_factoring004_admin
                     'name' => 'Unpaid status',
                     'type'=>'function',
                 ),
-                'factoring004_status_delivery' => array(
-                    'name' => 'Delivery status',
-                    'type'=>'function',
-                ),
-                'factoring004_status_return' => array(
-                    'name' => 'Return status',
-                    'type'=>'function',
-                ),
-                'factoring004_status_cancel' => array(
-                    'name' => 'Cancel status',
-                    'type'=>'function',
-                ),
             )
         );
-    }
-
-    public function edit_variable_factoring004_offer_file($value)
-    {
-        $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Файл оферты').'</div>';
-        if (!$value) {
-            $html .= '<button id="factoring004-agreement-button" class="btn btn-primary" type="button">Загрузить</button>
-                        <input style="display:none;" type="file" id="factoring004_offer_file"/>
-                        <span style="display:block; font-style: italic">Загрузите файл оферты, если вам необходимо его отобразить клиенту</span>';
-        } else {
-            $html .= '<a target="_blank" href=/'.USERFILES.'/'.$value.' class="btn btn-success agreement-link">Просмотреть</a>
-                      <button id="factoring004-agreement-file-remove" type="button" data-value='.$value.' class="btn btn-primary">Удалить</button>';
-        }
-        $html .= '<input type="hidden" name="factoring004_offer_file" id="factoring004_offer_file_name"/></div>';
-
-        echo $html;
-    }
-
-    public function edit_variable_factoring004_status_cancel($value)
-    {
-        $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус отмененных заказов').'</div><select name="factoring004_status_cancel">';
-        foreach ($this->getStatuses() as $status) {
-            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
-            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
-            if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
-            } else {
-                $html .= '<option '.($statusName1 === 'Отменен' || $statusName2 === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
-            }
-        }
-        $html .= '</select></div>';
-        echo $html;
-    }
-
-    public function edit_variable_factoring004_status_return($value)
-    {
-        $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус возвращенных заказов').'</div><select name="factoring004_status_return">';
-        foreach ($this->getStatuses() as $status) {
-            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
-            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
-            if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
-            } else {
-                $html .= '<option '.($statusName1 === 'Отменен' || $statusName2 === 'Canceled' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
-            }
-        }
-        $html .= '</select></div>';
-        echo $html;
-    }
-
-    public function edit_variable_factoring004_status_delivery($value)
-    {
-        $html = '<div class="unit tr_payment" payment="factoring004"><div class="infofield">'.$this->diafan->_('Статус доставленных заказов').'</div><select name="factoring004_status_delivery">';
-        foreach ($this->getStatuses() as $status) {
-            $statusName1 = isset($status['name1']) ? $status['name1'] : '';
-            $statusName2 = isset($status['name2']) ? $status['name2'] : $statusName1;
-            if ($status['id'] === $value) {
-                $html .= '<option selected value='.$status['id'].'>'.$statusName1.'</option>';
-            } else {
-                $html .= '<option '.($statusName1 === 'Выполнен' || $statusName2 === 'Completed' ? 'selected' : '').' value='.$status['id'].'>'.$statusName1.'</option>';
-            }
-        }
-        $html .= '</select></div>';
-        echo $html;
     }
 
     public function edit_variable_factoring004_status_unpaid($value)
@@ -155,33 +79,6 @@ class Payment_factoring004_admin
         echo $html;
     }
 
-    public function edit_variable_factoring004_delivery_items($values)
-    {
-        if (!$values) {
-            $values = [];
-        }
-        $html = '<div class="unit tr_payment" payment="factoring004" style="display:grid"><div class="infofield">'.$this->diafan->_('Способы доставки').'</div>';
-        foreach ($this->getDeliveryItems() as $deliveryItem) {
-            if (in_array($deliveryItem['id'], $values)) {
-                $html .= '<input id='.$deliveryItem['id'].' name="factoring004_delivery_items[]" checked type="checkbox" value='.$deliveryItem['id'].'><label for='.$deliveryItem['id'].'>'.$deliveryItem['name1'].'</label>';
-            } else {
-                $html .= '<input id='.$deliveryItem['id'].' name="factoring004_delivery_items[]" type="checkbox" value='.$deliveryItem['id'].'><label for='.$deliveryItem['id'].'>'.$deliveryItem['name1'].'</label>';
-            }
-        }
-        $html .= '</div>';
-        echo $html;
-    }
-
-    public function save_variable_factoring004_offer_file()
-    {
-        return $_POST["factoring004_offer_file"];
-    }
-
-    public function save_variable_factoring004_delivery_items()
-    {
-        return $_POST["factoring004_delivery_items"];
-    }
-
     public function save_variable_factoring004_status_paid()
     {
         return $_POST["factoring004_status_paid"];
@@ -190,26 +87,6 @@ class Payment_factoring004_admin
     public function save_variable_factoring004_status_unpaid()
     {
         return $_POST["factoring004_status_unpaid"];
-    }
-
-    public function save_variable_factoring004_status_delivery()
-    {
-        return $_POST["factoring004_status_delivery"];
-    }
-
-    public function save_variable_factoring004_status_return()
-    {
-        return $_POST["factoring004_status_return"];
-    }
-
-    public function save_variable_factoring004_status_cancel()
-    {
-        return $_POST["factoring004_status_cancel"];
-    }
-
-    public function getDeliveryItems()
-    {
-        return DB::query_fetch_all("SELECT * FROM {shop_delivery}");
     }
 
     public function getStatuses()
