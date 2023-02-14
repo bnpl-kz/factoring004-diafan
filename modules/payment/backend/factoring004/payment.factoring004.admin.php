@@ -35,14 +35,6 @@ class Payment_factoring004_admin
                 'factoring004_point_code'=>'Point Code',
                 'factoring004_partner_email'=>'Partner Email',
                 'factoring004_partner_website'=>'Partner Website',
-                'factoring004_delivery_items' => array(
-                    'name' => 'Delivery parameters',
-                    'type'=>'function',
-                ),
-                'factoring004_offer_file' => array(
-                    'name' => 'Offer file',
-                    'type'=>'function',
-                ),
                 'factoring004_status_paid' => array(
                     'name' => 'Paid status',
                     'type'=>'function',
