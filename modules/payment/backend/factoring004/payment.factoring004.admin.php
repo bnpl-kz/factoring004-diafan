@@ -38,6 +38,8 @@ class Payment_factoring004_admin
                 ),
             )
         );
+
+        $this->addFactoringDescriptionScript();
     }
 
     public function edit_variable_factoring004_status_unpaid($value)
@@ -69,6 +71,16 @@ class Payment_factoring004_admin
             }
         }
         $html .= '</select></div>';
+        echo $html;
+    }
+
+    public function addFactoringDescriptionScript()
+    {
+        $html = "<script>document.addEventListener('DOMContentLoaded', () => {";
+        $html .= "$('select[name=backend]').change(function() {";
+        $html .= "if ($('select[name=backend]').val() == 'factoring004') {";
+        $html .= "$('#text textarea[name=text]').val('Купи сейчас, плати потом! Быстрое и удобное оформление рассрочки на 4 месяца без первоначальной оплаты. Моментальное подтверждение, без комиссий и процентов. Для заказов суммой от 6000 до 200000 тг.'); }";
+        $html .= '}); });</script>';
         echo $html;
     }
 
