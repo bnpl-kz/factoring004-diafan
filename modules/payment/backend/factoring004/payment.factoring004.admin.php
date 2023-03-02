@@ -79,7 +79,7 @@ class Payment_factoring004_admin
         $html = "<script>document.addEventListener('DOMContentLoaded', () => {";
         $html .= "$('select[name=backend]').change(function() {";
         $html .= "if ($('select[name=backend]').val() == 'factoring004') {";
-        $html .= "$('#text textarea[name=text]').val('Купи сейчас, плати потом! Быстрое и удобное оформление рассрочки на 4 месяца без первоначальной оплаты. Моментальное подтверждение, без комиссий и процентов. Для заказов суммой от 6000 до 200000 тг.'); }";
+        $html .= "$('#text textarea[name=text]').val('Купи сейчас, плати потом! Быстрое и удобное оформление рассрочки на 4 месяца. Моментальное одобрение, без комиссий и процентов. Для заказов суммой от 6 000 до 200 000 тг.'); }";
         $html .= '}); });</script>';
         echo $html;
     }
